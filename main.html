@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script type='text/javascript'>
+        var Module = {
+            postRun: [
+            ],
+            print: (function() {
+                var element = document.getElementById('output');
+                if (element) element.value = ''; // clear browser cache
+                return function(text) {
+                    if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                    console.log(text);
+                };
+                })(),
+                printErr: function(text) {
+                if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                    if (0) { // XXX disabled for safety typeof dump == 'function') {
+                        dump(text + '\n'); // fast, straight to the real console
+                    } else {
+                        console.error(text);
+                    }
+                }
+            };
+
+        Module.ccall("_main", 'number', [], [])
+        </script>
+ 
+        <script>
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'main.wasm', true);
+            xhr.responseType = 'arraybuffer';
+            xhr.onload = function() {
+                Module.wasmBinary = xhr.response;
+
+                var script = document.createElement('script');
+                script.src = "main.js";
+                document.body.appendChild(script);
+            };
+            xhr.send(null);
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
