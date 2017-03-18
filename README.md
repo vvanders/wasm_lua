@@ -9,6 +9,7 @@ Each update is executed in a unique VM instance via WASM + emscripten.
 [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)) is a fast, highly embeddable VM that boasts a wide set of features allowing it to be adapted to a diverse set of domains and platforms.
 
 * It can be run in 400kb of memory or less.
+* Lua is fast, the current sample runs in 1.7ms including VM setup and teardown on an i7-6600U.
 * Multi-paradigm via metatables, closures and coroutines.
 * Robust, proven VM that's shipped on platforms including MIPS, x86, ARM and many others(and now WASM!).
 * Small, easy to understand language.
