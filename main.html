@@ -28,6 +28,7 @@
             var xhr = new XMLHttpRequest();
             xhr.open('GET', 'main.wasm', true);
             xhr.responseType = 'arraybuffer';
+            xhr.overrideMimeType("application/wasm");
             xhr.onload = function() {
                 Module.wasmBinary = xhr.response;
 
