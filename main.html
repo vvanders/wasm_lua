@@ -1,15 +1,18 @@
 <html>
+    <meta charset="utf-8">
     <head>
-        <script type='text/javascript'>
+       <script type='text/javascript'>
         var Module = {
             postRun: [
+                text_changed
             ],
             print: (function() {
-                var element = document.getElementById('output');
-                if (element) element.value = ''; // clear browser cache
                 return function(text) {
                     if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
                     console.log(text);
+
+                    if(text != "emsc")
+                        document.getElementById("result").innerHTML += "<br>\n" + text;
                 };
                 })(),
                 printErr: function(text) {
@@ -22,10 +25,6 @@
                 }
             };
 
-        Module.ccall("_main", 'number', [], [])
-        </script>
- 
-        <script>
             var xhr = new XMLHttpRequest();
             xhr.open('GET', 'main.wasm', true);
             xhr.responseType = 'arraybuffer';
@@ -37,8 +36,28 @@
                 document.body.appendChild(script);
             };
             xhr.send(null);
-        </script>
+
+            var timer;
+            function text_changed() {
+                clearTimeout(timer);
+                input = document.getElementById("edit").value;
+                timer = setTimeout(function() {
+                        document.getElementById("result").innerHTML = "";
+                        Module.ccall("run_lua", 'number', ['string'], [input]);
+                    },
+                    750);
+            }
+       </script>
     </head>
     <body>
+        <div>
+        <textarea id="edit" style="width: 800px; height: 480px;" onkeyup="text_changed();">
+function hello_lua()
+    print "Hello Lua!"
+end
+
+hello_lua()</textarea>
+        <div id="result" style="width: 800px; float: right"></div>
+        </div>
     </body>
 </html>
