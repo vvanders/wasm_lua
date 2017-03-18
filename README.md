@@ -5,6 +5,8 @@ Open [here](https://cdn.rawgit.com/vvanders/wasm_lua/d68f46a8/main.html), if it 
 
 Each update is executed in a unique VM instance via WASM + emscripten.
 
+Currently test on Firefox 52.0 but probably works on other platforms as well.
+
 # Why?
 [Lua](https://en.wikipedia.org/wiki/Lua_(programming_language)) is a fast, highly embeddable VM that boasts a wide set of features allowing it to be adapted to a diverse set of domains and platforms.
 
