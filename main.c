@@ -4,17 +4,17 @@
 #include <lualib.h>
 
 int run_lua(const char* script) {
-	lua_State* lua = luaL_newstate();
-	luaL_openlibs(lua);
+	lua_State* L = luaL_newstate();
+	luaL_openlibs(L);
 
-	int res = luaL_dostring(lua, script);
+	int res = luaL_dostring(L, script);
 
 	size_t len = 0;
-	const char* value = lua_tolstring(lua, lua_gettop(lua), &len);
+	const char* value = lua_tolstring(L, lua_gettop(L), &len);
 
 	printf("%s\n", value);
 
-	lua_close(lua);
+	lua_close(L);
 
 	return 0;
 }
