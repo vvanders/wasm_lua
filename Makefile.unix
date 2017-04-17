@@ -1,0 +1,30 @@
+
+LUA_RELEASE:=5.3.4
+LUA_TARBALL:=lua-$(LUA_RELEASE).tar.gz
+LUA_SRC:=lua-$(LUA_RELEASE)/src
+LUA_LIB:=$(LUA_SRC)/liblua.a
+
+all: main.wasm
+
+show:
+	x-www-browser main.html &
+
+main.wasm: main.c $(LUA_LIB)
+	emcc -I$(LUA_SRC) main.c $(LUA_LIB) -s WASM=1 -O2 -o main.js -s EXPORTED_FUNCTIONS="['_run_lua']"
+
+$(LUA_LIB): $(LUA_SRC)
+	make -C $(LUA_SRC) liblua.a CC="emcc -s WASM=1"
+
+$(LUA_SRC): $(LUA_TARBALL)
+	tar xvfz $(LUA_TARBALL)
+
+$(LUA_TARBALL):
+	wget https://www.lua.org/ftp/$(LUA_TARBALL)
+
+clean:
+	-make -C $(LUA_SRC) clean
+	rm -f main.wasm main.js
+
+realclean: clean
+	rm -rf lua-*
+	rm -f lua-*.tar.gz
