@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "lua.h"
 #include <lauxlib.h>
 #include <lualib.h>
@@ -11,8 +10,8 @@ int run_lua(const char* script) {
 
 	size_t len = 0;
 	const char* value = lua_tolstring(L, lua_gettop(L), &len);
-
-	printf("%s\n", value);
+	lua_writestring(value, len);
+	lua_writeline();
 
 	lua_close(L);
 
