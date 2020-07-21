@@ -17,3 +17,10 @@ Currently test on Firefox 52.0 but probably works on other platforms as well.
 * Extensible debugger hooks for easy on-target debugging.
 
 Thanks to [rawgit](http://rawgit.com/) for hosting.
+
+# Files
+- main.js, main.wasm: auto-generated
+- main.c: export lua C function to javascript
+- index.html: test page and useage example
+- makefile: emcc config (which function to export, init function name, ...etc.)
+- lua-<version>: lua source code without any modify
