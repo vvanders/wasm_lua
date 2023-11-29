@@ -2,3 +2,4 @@
 **/*.a
 **/*.wasm
 main.js
+.DS_Store
