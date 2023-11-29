@@ -9,7 +9,12 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ],
+            "intelliSenseMode": "macos-clang-x64"
         },
         {
             "name": "Linux",
@@ -20,7 +25,8 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "intelliSenseMode": "linux-gcc-x64"
         },
         {
             "name": "Win32",
@@ -31,7 +37,9 @@
             "browse": {
                 "limitSymbolsToIncludedHeaders": true,
                 "databaseFilename": ""
-            }
+            },
+            "intelliSenseMode": "windows-msvc-x64"
         }
-    ]
+    ],
+    "version": 4
 }
